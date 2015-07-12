@@ -45,7 +45,7 @@ public class CrimeActivityFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                // intentionally left blank
+                // intentionally left blank 
             }
         });
 
