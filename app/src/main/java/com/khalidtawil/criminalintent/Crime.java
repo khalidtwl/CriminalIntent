@@ -1,17 +1,38 @@
 package com.khalidtawil.criminalintent;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
  * Created by khalidtawil on 7/12/15.
+ * This class represents an instance of an office crime
  */
 public class Crime {
     private UUID mID;
     private String mTitle;
+    private Date mDate;
+    private boolean mSolved;
 
     public Crime(){
         // Generates a unique identifier
         mID = UUID.randomUUID();
+        mDate = new Date();
+    }
+
+    public boolean isSolved() {
+        return mSolved;
+    }
+
+    public void setSolved(boolean solved) {
+        mSolved = solved;
+    }
+
+    public Date getDate() {
+        return mDate;
+    }
+
+    public void setDate(Date date) {
+        mDate = date;
     }
 
     public UUID getID() {
