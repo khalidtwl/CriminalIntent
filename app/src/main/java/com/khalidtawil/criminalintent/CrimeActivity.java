@@ -1,6 +1,7 @@
 package com.khalidtawil.criminalintent;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -15,8 +16,11 @@ public class CrimeActivity extends Activity {
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        CrimeActivityFragment fragment = new CrimeActivityFragment();
-        fragmentTransaction.add(R.id.fragmentContainer, fragment);
-        fragmentTransaction.commit();
+        Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+        if (fragment == null) {
+            fragment = new CrimeActivityFragment();
+            fragmentTransaction.add(R.id.fragmentContainer, fragment);
+            fragmentTransaction.commit();
+        }
     }
 }

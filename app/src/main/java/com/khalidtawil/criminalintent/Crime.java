@@ -19,20 +19,20 @@ public class Crime {
         mDate = new Date();
     }
 
-    public boolean isSolved() {
-        return mSolved;
-    }
-
-    public void setSolved(boolean solved) {
-        mSolved = solved;
-    }
-
     public Date getDate() {
         return mDate;
     }
 
     public void setDate(Date date) {
         mDate = date;
+    }
+
+    public boolean isSolved() {
+        return mSolved;
+    }
+
+    public void setSolved(boolean solved) {
+        mSolved = solved;
     }
 
     public UUID getID() {
