@@ -17,9 +17,9 @@ public class CrimeLab {
 
     private CrimeLab(Context appContext){
         mAppContext = appContext;
-        mCrimes = new ArrayList<Crime>();
+        mCrimes = new ArrayList<>();
         // Populates the arraylist with 100 crimes
-        for(int i = 0; i < 99; i++){
+        for(int i = 0; i < 100; i++){
             Crime c = new Crime();
             c.setTitle("Crime #"+i);
             c.setSolved(i%2==0);
