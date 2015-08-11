@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- * Created by khalidtawil on 7/13/15.
  * This class is a singleton representing a list of crimes
  */
 public class CrimeLab {
@@ -18,13 +17,6 @@ public class CrimeLab {
     private CrimeLab(Context appContext){
         mAppContext = appContext;
         mCrimes = new ArrayList<>();
-        // Populates the arraylist with 100 crimes
-        for(int i = 0; i < 100; i++){
-            Crime c = new Crime();
-            c.setTitle("Crime #"+i);
-            c.setSolved(i%2==0);
-            mCrimes.add(c);
-        }
     }
 
     public static CrimeLab get(Context c){
@@ -46,4 +38,7 @@ public class CrimeLab {
         return null;
     }
 
+    public void addCrime(Crime c) {
+        mCrimes.add(c);
+    }
 }
