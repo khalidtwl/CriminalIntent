@@ -120,4 +120,10 @@ public class CrimeFragment extends Fragment {
             updateDate();
         }
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        CrimeLab.get(getActivity()).saveCrimes();
+    }
 }

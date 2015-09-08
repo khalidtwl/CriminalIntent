@@ -92,14 +92,14 @@ public class CrimeListFragment extends ListFragment {
         }
     }
 
-    // Checks for changes
+    // Notifies on changes
     @Override
     public void onResume() {
         super.onResume();
         ((CrimeAdapter)getListAdapter()).notifyDataSetChanged();
     }
 
-    //Inflates the menu xml
+    // Menu
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);

@@ -1,5 +1,8 @@
 package com.khalidtawil.criminalintent;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -8,6 +11,11 @@ import java.util.UUID;
  * This class represents an instance of an office crime
  */
 public class Crime {
+    private static final String JSON_ID = "id";
+    private static final String JSON_TITLE = "title";
+    private static final String JSON_DATE = "date";
+    private static final String JSON_SOLVED = "solved";
+
     private UUID mID;
     private String mTitle;
     private Date mDate;
@@ -50,5 +58,14 @@ public class Crime {
     @Override
     public String toString(){
         return mTitle;
+    }
+
+    public JSONObject toJSON() throws JSONException{
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(JSON_ID, mID.toString());
+        jsonObject.put(JSON_TITLE, mTitle);
+        jsonObject.put(JSON_DATE, mDate.getTime());
+        jsonObject.put(JSON_SOLVED, mSolved);
+        return jsonObject;
     }
 }
