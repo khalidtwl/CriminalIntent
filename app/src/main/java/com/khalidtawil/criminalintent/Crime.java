@@ -27,6 +27,14 @@ public class Crime {
         mDate = new Date();
     }
 
+    // Constructs a crime out of a JSON object
+    public Crime(JSONObject json) throws JSONException{
+        mID = UUID.fromString(json.getString(JSON_ID));
+        mTitle = json.getString(JSON_TITLE);
+        mDate = new Date(json.getLong(JSON_DATE));
+        mSolved = json.getBoolean(JSON_SOLVED);
+    }
+
     public Date getDate() {
         return mDate;
     }

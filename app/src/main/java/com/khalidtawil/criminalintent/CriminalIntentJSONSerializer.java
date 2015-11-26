@@ -4,15 +4,20 @@ import android.content.Context;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONTokener;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 
 /**
- * This class handles the saving and loading of local JSON data
+ * This class converts crime data to JSON
  */
 public class CriminalIntentJSONSerializer {
     private Context mContext;
@@ -21,6 +26,36 @@ public class CriminalIntentJSONSerializer {
     public CriminalIntentJSONSerializer(Context c, String f) {
         mContext = c;
         mFileName = f;
+    }
+
+    public ArrayList<Crime> loadCrimes() throws IOException, JSONException {
+        ArrayList<Crime> crimes = new ArrayList<Crime>();
+        BufferedReader reader = null;
+        try {
+            // Open and read the file into a StringBuilder
+            InputStream in = mContext.openFileInput(mFileName);
+            reader = new BufferedReader(new InputStreamReader(in));
+            StringBuilder jsonString = new StringBuilder();
+            String line = null;
+            while((line = reader.readLine()) != null){
+                // Line breaks are omitted and irrelevant
+                jsonString.append(line);
+            }
+            // Parse the JSON using JSONTokener
+            JSONArray array = (JSONArray) new JSONTokener(jsonString.toString()).nextValue();
+            // Goes through the JSONArray
+            for (int i = 0; i < array.length(); i++) {
+                crimes.add(new Crime(array.getJSONObject(i)));
+            }
+        }
+        catch (FileNotFoundException e){
+            // Ignore this one; it happens when starting fresh
+        }
+        finally {
+            if (reader != null)
+                reader.close();
+        }
+        return crimes;
     }
 
     public void saveCrimes(ArrayList<Crime> mCrimes) throws JSONException, IOException {
